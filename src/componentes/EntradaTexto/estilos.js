@@ -3,12 +3,12 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   input: {
     height: 50,
-    width: "100%",
-    borderColor: "#e6e6e6",
-    borderWidth: 1,
-    borderRadius: 5,
+    width: "90%",
+    borderBottomColor: '#EF7A84',
+    borderBottomWidth: 2,
     paddingHorizontal: 10,
-    marginTop: 10,
-    backgroundColor: "#fff",
+    marginTop: 30,
+    backgroundColor: "#F4F4F4",
+    color: '#EF7A84',
   }
 });

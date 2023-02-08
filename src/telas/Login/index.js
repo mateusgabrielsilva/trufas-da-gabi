@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
+import Topo from './components/topo';
 import Botao from '../../componentes/Botao';
 import { EntradaTexto } from '../../componentes/EntradaTexto';
 import { logar } from '../../Services/requisicoesFirebase';
@@ -9,6 +10,7 @@ import { auth } from '../../config/firebase';
 
 import animacaoCarregando from '../../../assets/animacaoCarregando.gif'
 
+import botaoEntrar from '../../../assets/Login/botaoLogin.png'
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
@@ -61,6 +63,7 @@ export default function Login({ navigation }) {
 
   return (
     <View style={estilos.container}>
+      <Topo/>
       <EntradaTexto 
         label="E-mail"
         value={email}
@@ -82,13 +85,21 @@ export default function Login({ navigation }) {
       error={statusError == 'firebase'}
       setError={setStatusError}
       />
+
+      <View style={estilos.containerEntrar}>
+        <Text style={estilos.textoEntrar}>Entrar</Text>
+        <TouchableOpacity style={estilos.botaoEntrar} onPress={() => realizarLogin()}>
+          <Image source={botaoEntrar}/>
+        </TouchableOpacity>
+      </View>
       
-      <Botao onPress={() => realizarLogin()}>LOGAR</Botao>
-      <Botao 
-        onPress={() => { navigation.navigate('Cadastro') }}
-      >
-        CADASTRAR USUÁRIO
-      </Botao>
+      <View style={estilos.containerEsqueceuSenha}>
+        <Text style={estilos.textoEsqueceuSenha}>Esqueceu a Senha?</Text>
+        <TouchableOpacity style={estilos.botaoSenha} onPress={() => {}}>
+          <Text style={estilos.EsqueciSenha}>Recuperar</Text>
+        </TouchableOpacity>
+      </View>
+      
     </View>
   );
 }
