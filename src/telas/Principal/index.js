@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
-import Cabecalho from '../../componentes/Cabecalho';
+import { ImageBackground, View, Text, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import Produto from '../../componentes/Produtos';
 import estilos from './estilos';
 import { auth, db } from '../../config/firebase';
@@ -22,7 +22,7 @@ export default function Principal({ navigation }) {
       } else {
         setNameUsuario('Úsuario não encontrado')
       }
-    })();
+    })()
   }, []);
 
   function deslogar() {
@@ -32,12 +32,24 @@ export default function Principal({ navigation }) {
 
   return (
     <View style={estilos.container}>
-      <Cabecalho logout={deslogar} />
-      <Text style={estilos.texto}>Usuário: {nameUsuario}</Text>
+      <View style={estilos.containerUser}>
+        <Text style={estilos.textoUser}>Olá, {nameUsuario}</Text>
+        <TouchableOpacity style={estilos.botaoSair} onPress={deslogar}>
+          <Icon 
+            name={'log-out'} 
+            size={20} 
+            color="#000"
+          />
+        </TouchableOpacity>
+      </View>
+      <View style={estilos.cardSaldoSemana}>
+        <Text style={estilos.textoSaldoSemana}>Saldo da Semana</Text>
+        <Text style={estilos.precoSaldoSemana}>R$ 170,00</Text>
+      </View>
 
       <Produto nome="Tênis" preco="250,00" />
       <Produto nome="Camisa" preco="100,00" />
       <Produto nome="Suplementos" preco="50,00" />
-     </View>
+    </View>
   );
 }
